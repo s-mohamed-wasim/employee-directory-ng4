@@ -1,0 +1,27 @@
+/* Global styles */
+body {
+  background: #f5f7fa;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.page {
+  padding: 20px 0;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1f4e79;
+}
+
+.muted {
+  color: #6a737d;
+}

@@ -1,0 +1,52 @@
+<div class="container page">
+  <h2>{{ editingId ? 'Edit employee' : 'Add employee' }}</h2>
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="row">
+      <div class="col-sm-6 form-group" [class.has-error]="f.firstName.touched && f.firstName.invalid">
+        <label>First name *</label>
+        <input class="form-control" formControlName="firstName">
+      </div>
+      <div class="col-sm-6 form-group" [class.has-error]="f.lastName.touched && f.lastName.invalid">
+        <label>Last name *</label>
+        <input class="form-control" formControlName="lastName">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 form-group" [class.has-error]="f.email.touched && f.email.invalid">
+        <label>Email *</label>
+        <input class="form-control" type="email" formControlName="email">
+        <span class="help-block" *ngIf="f.email.touched && f.email.errors?.email">Enter a valid email address.</span>
+      </div>
+      <div class="col-sm-6 form-group" [class.has-error]="f.role.touched && f.role.invalid">
+        <label>Role *</label>
+        <input class="form-control" formControlName="role">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 form-group" [class.has-error]="f.departmentId.touched && f.departmentId.invalid">
+        <label>Department *</label>
+        <select class="form-control" formControlName="departmentId">
+          <option [ngValue]="null">-- Select --</option>
+          <option *ngFor="let d of departments" [ngValue]="d.id">{{ d.name }}</option>
+        </select>
+      </div>
+      <div class="col-sm-4 form-group">
+        <label>Location</label>
+        <input class="form-control" formControlName="location">
+      </div>
+      <div class="col-sm-4 form-group">
+        <label>Joined on</label>
+        <input class="form-control" type="date" formControlName="joinedOn">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Bio (HTML allowed)</label>
+      <textarea class="form-control" rows="3" formControlName="bio"></textarea>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" formControlName="active"> Active</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+    <a routerLink="/employees" class="btn btn-link">Cancel</a>
+  </form>
+</div>

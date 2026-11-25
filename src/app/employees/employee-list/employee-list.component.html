@@ -1,0 +1,40 @@
+<div class="container page">
+  <div class="clearfix">
+    <h2 class="pull-left">Employees</h2>
+    <a routerLink="/employees/new" class="btn btn-primary pull-right" style="margin-top:20px">Add employee</a>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div class="col-sm-8">
+        <input class="form-control" placeholder="Search by name, role or location" [(ngModel)]="search">
+      </div>
+      <div class="col-sm-4 checkbox">
+        <label><input type="checkbox" [(ngModel)]="showInactive"> Show inactive</label>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="muted">Loading...</div>
+
+  <table class="table table-striped card" *ngIf="!loading">
+    <thead>
+      <tr><th>Name</th><th>Role</th><th>Department</th><th>Location</th><th>Status</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of visibleEmployees | filter:search:['firstName','lastName','role','location']" appHighlight>
+        <td><a [routerLink]="['/employees', e.id]">{{ e.firstName }} {{ e.lastName }}</a></td>
+        <td>{{ e.role }}</td>
+        <td>{{ departmentNames[e.departmentId] }}</td>
+        <td>{{ e.location }}</td>
+        <td>
+          <span class="label" [ngClass]="e.active ? 'label-success' : 'label-default'">{{ e.active ? 'Active' : 'Inactive' }}</span>
+        </td>
+        <td class="text-right">
+          <a [routerLink]="['/employees', e.id, 'edit']" class="btn btn-xs btn-default">Edit</a>
+          <button class="btn btn-xs btn-danger" (click)="remove(e)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

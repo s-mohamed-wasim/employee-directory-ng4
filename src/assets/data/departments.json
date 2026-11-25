@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Engineering" },
+  { "id": 2, "name": "Quality Assurance" },
+  { "id": 3, "name": "Platform & DevOps" },
+  { "id": 4, "name": "Design" },
+  { "id": 5, "name": "Business Analysis" },
+  { "id": 6, "name": "Support" }
+]
