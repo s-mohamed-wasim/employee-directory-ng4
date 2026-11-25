@@ -31,6 +31,17 @@ node -v   # v8.17.0
 npm -v    # 6.x
 ```
 
+### Only Node 16 available? (tested with Node 16.20.2 / npm 8.19.4)
+
+Install with `--ignore-scripts` – this skips the old `node-sass` native build that fails on newer Node. The app only uses plain CSS, so nothing is lost:
+
+```bash
+npm install --ignore-scripts
+npm start            # http://localhost:4200
+npm run build        # ng build --prod
+npm run lint
+```
+
 ## Run the app
 
 ```bash
@@ -51,7 +62,7 @@ npm test             # ng test (Chrome)
 npx ng test --single-run --browsers ChromeHeadlessCI   # headless, single run
 ```
 
-Baseline status on Node 8.17.0: `ng build --prod` succeeds, `ng lint` passes, unit tests: 6 passed, 1 skipped.
+Baseline status: on Node 8.17.0 `ng build --prod` succeeds, `ng lint` passes, unit tests: 6 passed, 1 skipped. On Node 16.20.2 (with `--ignore-scripts`) `ng build --prod`, `ng lint` and `ng serve` succeed.
 
 ## Features
 
